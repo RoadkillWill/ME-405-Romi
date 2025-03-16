@@ -3,16 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ME 405 Romi (Lil' Rom)</title>
+    <title>ME405 Romi Project</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Welcome to My Project Documentation</h1>
-    <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="Hardware.html">Hardware</a></li>
-        </ul>
-    </nav>
+
+    <header>
+        <h1>ME405 Romi Time-trial Project</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="Hardware.html">Hardware</a></li>
+                <li><a href="code/main.py">Source Code</a></li>
+                <li><a href="video_demo.mp4">Video Demo</a></li>
+                <li><a href="https://github.com/yourusername/your-repo">GitHub Repository</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Project Overview</h2>
+            <p>This project involves building and testing a Romi robot that follows a line track in a time-trial format.</p>
+        </section>
+
+        <section>
+            <h2>Hardware & Wiring</h2>
+            <p>We used sensors and actuators including:</p>
+            <ul>
+                <li>Line-following IR sensors</li>
+                <li>Motor driver controlled by PWM</li>
+                <li>Microcontroller (e.g., STM32, Raspberry Pi Pico)</li>
+            </ul>
+            <a href="Hardware.html">View Full Wiring & Pinouts</a>
+        </section>
+
+        <section>
+            <h2>Software Implementation</h2>
+            <p>We implemented a PID controller to optimize the robot's movement.</p>
+            <pre><code>
+# Example PID control loop
+error = setpoint - sensor_value
+integral += error
+derivative = error - previous_error
+output = Kp * error + Ki * integral + Kd * derivative
+            </code></pre>
+            <a href="code/main.py">View Full Source Code</a>
+        </section>
+
+        <section>
+            <h2>Video Demonstration</h2>
+            <video width="640" height="360" controls>
+                <source src="video_demo.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>© 2025 Your Name - ME405 Term Project</p>
+    </footer>
+
 </body>
 </html>
