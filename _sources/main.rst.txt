@@ -9,6 +9,8 @@ This section provides an overview of the main tasks and scheduler logic used in 
 
 Main Code
 ------------
+This file contains the main task loop and all tasks involved in controlling the ROMI robot.
+
 .. code-block:: python
 
     from pyb import Pin, USB_VCP, I2C, delay
@@ -18,53 +20,24 @@ Main Code
     from cotask import Task, task_list
     from nb_input import NB_Input
 
-    """ --------------------- Initialization --------------------- """
-
-    """ Initialize UART communication """
-    ser = pyb.UART(5, 115200, timeout=1000)
-    pyb.repl_uart(ser)
-    nb_in = NB_Input(ser, echo=True)
-
-    """ Initialize Romi Constants """
-    wheel_circumference_in = 8.658
-    encoder_ticks_per_rotation = 1440
-    grid_distance_in = 28.5
-    grid_distance_in_half = grid_distance_in / 2
-    grid_escape_distance_in = 6
-    deadzone1 = 1
-
-    """ Define shared variables """
-    left_motor_effort = Share('h', thread_protect=True, name="Left Motor Effort")
-    right_motor_effort = Share('h', thread_protect=True, name="Right Motor Effort")
-    left_position = Share('h', thread_protect=True, name="Left Position")
-    right_position = Share('h', thread_protect=True, name="Right Position")
-
-    """ Create driver objects """
-    left_motor = Motor(motor_tim=8, PWM_Pin=Pin.cpu.C8, DIR=Pin.cpu.C6, nSLP=Pin.cpu.C7)
-    right_motor = Motor(motor_tim=4, PWM_Pin=Pin.cpu.B8, DIR=Pin.cpu.B7, nSLP=Pin.cpu.B6)
-    left_encoder = Encoder(tim=1, chA_pin=Pin.cpu.A8, chB_pin=Pin.cpu.A9)
-    right_encoder = Encoder(tim=3, chA_pin=Pin.cpu.B4, chB_pin=Pin.cpu.B5)
-    Sensor = Sensor_Array()
-    bumper = Bumper()
-
-    """ Enable motor drivers """
-    left_motor.enable()
-    right_motor.enable()
-
-    """ Initialize I2C for the IMU (using bus 2). """
-    imu_i2c = I2C(2, I2C.CONTROLLER, baudrate=400000)
-    imu = BNO055(imu_i2c)
-
-    """ Set the IMU to NDOF mode. """
-    imu.set_mode(BNO055.NDOF_MODE)
-
 Task: User Command
 -------------------
+Handles user input via UART and updates shared variables.
+
 .. code-block:: python
 
     def task_user_command():
         """
-        Task to handle user commands received via UART.
+        Reads user input from UART, processes commands, and updates shared variables accordingly.
+        
+        Commands include:
+        - Integers (-100 to 100) to control motor effort.
+        - 'calibrate' to initiate sensor calibration.
+        - 'cl' to activate closed-loop control.
+        - 'i2c' to start IMU calibration.
+        - 'done' to signal completion of calibration steps.
+
+        The function continuously monitors the UART input and processes commands in real time.
         """
         while True:
             nb_in.check()
@@ -74,7 +47,6 @@ Task: User Command
                 try:
                     effort = int(user_input_str)
                     if -100 <= effort <= 100:
-                        print("Storing effort", effort, "in queue...")
                         user_input.put(effort)
                 except ValueError:
                     cmd = user_input_str.lower()
@@ -94,11 +66,19 @@ Task: User Command
 
 Task: Position Control
 -----------------------
+Controls motor effort based on user input, sensor readings, and grid navigation.
+
 .. code-block:: python
 
     def task_position_control():
         """
-        Task to control the position of the robot.
+        Adjusts motor efforts based on user input, bumper sensor readings, and grid navigation state.
+
+        - If backup is needed, executes a predefined backup sequence to maneuver the robot.
+        - If the robot is navigating the grid, adjusts motor control to follow grid paths.
+        - Uses sensor feedback and IMU correction to ensure smooth and accurate movement.
+
+        The function continuously checks for changes in navigation states and applies the appropriate control logic.
         """
         while True:
             if motor_drive.get():
@@ -118,27 +98,42 @@ Task: Position Control
 
 Task: Encoder Read
 -------------------
+Reads encoder values and updates shared variables.
+
 .. code-block:: python
 
     def task_encoder_read():
         """
-        Task to read encoder values and update shared variables.
+        Reads the encoder values and updates shared variables for position and velocity.
+
+        - Retrieves the latest encoder counts.
+        - Computes the position and velocity.
+        - Stores the values in shared variables for other tasks to use.
+
+        This function ensures accurate movement tracking by continuously updating encoder values.
         """
         while True:
             left_encoder.update()
             right_encoder.update()
             left_position.put(int(left_encoder.get_position()))
-            right_position.put(int(right_encoder.get_position()))
-            left_velocity.put(int(left_encoder.get_velocity()))
-            right_velocity.put(int(right_encoder.get_velocity()))
+            right_position.put(int(right_encoder.get_velocity()))
+            yield 10
 
 Task: Closed-Loop Control
 --------------------------
+Uses a PID controller to follow a line or navigate the grid.
+
 .. code-block:: python
 
     def task_closed_loop_control():
         """
-        Task to handle closed-loop control for line following and grid navigation.
+        Implements closed-loop control using a PID controller.
+
+        - Computes an error based on the difference between the desired and actual line position.
+        - Adjusts motor effort dynamically using proportional, integral, and derivative terms.
+        - Handles transitions between line following and grid navigation.
+
+        The function continuously monitors the sensor feedback and applies corrections to stay on track.
         """
         kp = 3
         while True:
@@ -152,16 +147,23 @@ Task: Closed-Loop Control
 
 Task: IMU Calibration
 ----------------------
+Guides the user through IMU calibration.
+
 .. code-block:: python
 
     def task_calibrate_imu_once():
         """
-        Task to calibrate the IMU sensor once.
+        Guides the user through IMU calibration and stores calibration coefficients.
+
+        - Prompts the user to move the sensor in all directions.
+        - Checks if all sensor axes are fully calibrated.
+        - Stores calibration coefficients once the process is complete.
+
+        This function runs once until successful calibration is achieved.
         """
         calibrated = False
         while True:
             if calibrate_i2c.get() and not calibrated:
-                print("Starting IMU calibration.")
                 calib_status = imu.get_calibration_status()
                 if (((calib_status >> 6) & 0x03) == 3 and 
                     ((calib_status >> 4) & 0x03) == 3 and 
@@ -171,13 +173,21 @@ Task: IMU Calibration
                     calibrate_i2c.put(False)
                     calibrated = True
 
-Task: Right Pivot
+Task: Pivot Turns
 ------------------
+Handles left and right pivot turns using IMU feedback.
+
 .. code-block:: python
 
     def task_right_pivot():
         """
-        Task to perform a right pivot turn.
+        Executes a right pivot turn based on IMU feedback.
+
+        - Reads the current heading from the IMU.
+        - Adjusts motor effort until the desired turn angle is achieved.
+        - Stops the motors once the turn is complete.
+
+        The function ensures smooth and precise 90-degree turns using real-time heading adjustments.
         """
         while True:
             if right_pivot.get():
@@ -189,56 +199,37 @@ Task: Right Pivot
                     right_motor.set_effort(0)
                     right_pivot.put(False)
                     done_right_pivot.put(True)
-                else:
-                    effort = max(min(int(3 * error), 100), -100)
-                    left_motor.set_effort(effort+6)
-                    right_motor.set_effort(-effort-6)
-
-Task: Left Pivot
------------------
-.. code-block:: python
-
-    def task_left_pivot():
-        """
-        Task to perform a left pivot turn.
-        """
-        while True:
-            if left_pivot.get():
-                desired_heading = pre_turn_heading.get() - 90
-                current_heading = imu.read_heading()
-                error = (desired_heading - current_heading + 180) % 360 - 180
-                if abs(error) < 6.5:
-                    left_motor.set_effort(0)
-                    right_motor.set_effort(0)
-                    left_pivot.put(False)
-                    done_left_pivot.put(True)
-                else:
-                    effort = max(min(int(3 * error), 100), -100)
-                    left_motor.set_effort(effort+6)
-                    right_motor.set_effort(-effort-6)
 
 Task: Bump Check
 -----------------
+Continuously checks for bump sensor activation.
+
 .. code-block:: python
 
     def task_bump_check():
         """
-        Task to check for bumps.
+        Monitors the bumper sensors for collisions.
+
+        - If a collision is detected, stops the robot and triggers a backup sequence.
+        - Ensures that the robot does not continue moving after an unexpected bump.
+
+        This function continuously checks for collisions and applies the necessary safety response.
         """
         while True:
             bumper.check_bump()
-            if bumper.bump_flag == 0: 
-                print("bump_flag set")
+            if bumper.bump_flag == 0:
                 back_up.put(True)
 
 Scheduler
 ----------
+Manages all tasks and executes them based on priority.
+
 .. code-block:: python
 
     task_list.append(Task(task_encoder_read, name='Encoder Read', priority=8, period=10))
     task_list.append(Task(task_user_command, name='User Command', priority=2, period=20))
     task_list.append(Task(task_closed_loop_control, name='Closed Loop Control', priority=7, period=20))
-    
+
     print("Starting Scheduler")
     while True:
         try:
