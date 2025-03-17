@@ -5,8 +5,12 @@
    
 .. ME405 Romi Project documentation master file
 
-Welcome to ME405 Romi Project's documentation!
-===============================================
+Welcome to our Romi Robot documentation for ME 405
+===================================================
+
+We built and modified the Romi Robot from Pololu in order to complete a line following, obstacle-
+avoiding machine that focused on efficiency and repeatability. The robot design emphasizes
+compatability across all types of tracks, not hardcoded points on a single setup
 
 .. toctree::
    :maxdepth: 2
