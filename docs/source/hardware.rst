@@ -12,6 +12,13 @@ The following diagram shows the correct wiring for the components:
    :align: center
    :alt: Wiring Diagram
 
+Additional View
+----------------
+.. image:: _static/Top_of_ROMI.png
+   :width: 400px
+   :align: center
+   :alt: Top View of ROMI
+
 Pin Assignments
 ---------------------------
 
