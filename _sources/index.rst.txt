@@ -13,6 +13,7 @@ Welcome to ME405 Romi Project's documentation!
    :caption: Contents:
 
    hardware
-   modules
-   IndicesAndTables
+   CodeStructure
    video_demo
+   IndicesAndTables
+   modules

@@ -1,0 +1,163 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Code Structure &mdash; ME 405 Romi 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/style.css" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Video Demo" href="video_demo.html" />
+    <link rel="prev" title="Hardware Documentation" href="hardware.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            ME 405 Romi
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="hardware.html">Hardware Documentation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Code Structure</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#main-components">Main Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#file-structure-overview">File Structure Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-descriptions">Module Descriptions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="video_demo.html">Video Demo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="IndicesAndTables.html">Indices and Tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Modules</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ME 405 Romi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Code Structure</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/CodeStructure.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="code-structure">
+<h1>Code Structure<a class="headerlink" href="#code-structure" title="Link to this heading"></a></h1>
+<p>This section describes the software architecture of the ME405 ROMI robot project.</p>
+<section id="main-components">
+<h2>Main Components<a class="headerlink" href="#main-components" title="Link to this heading"></a></h2>
+<p>The project is divided into several key modules, each handling a specific aspect of the system:</p>
+<ul class="simple">
+<li><p><strong>Main Execution (`main.py`)</strong>
+The entry point of the program, responsible for initializing all hardware components and managing task execution.</p></li>
+<li><p><strong>Motor Driver (`Romi_Drivers.py`)</strong>
+This module interfaces with the motor drivers, allowing speed control through Pulse Width Modulation (PWM).</p></li>
+<li><p><strong>IMU &amp; Sensor Processing (`imu.py`)</strong>
+Reads IMU sensor data and performs filtering to ensure accurate motion estimation.</p></li>
+<li><p><strong>Encoders (`encoder.py`)</strong>
+Handles quadrature encoder readings for precise motor positioning.</p></li>
+<li><p><strong>Task Scheduling (`task.py`)</strong>
+Implements a cooperative multitasking system to handle multiple real-time operations.</p></li>
+</ul>
+</section>
+<section id="file-structure-overview">
+<h2>File Structure Overview<a class="headerlink" href="#file-structure-overview" title="Link to this heading"></a></h2>
+<p>Below is the hierarchical structure of the project files:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ME-405-Romi/
+├──<span class="w"> </span>code/
+│<span class="w">   </span>├──<span class="w"> </span>main.py<span class="w">              </span><span class="c1"># Main entry script</span>
+│<span class="w">   </span>├──<span class="w"> </span>Romi_Drivers.py<span class="w">      </span><span class="c1"># Motor driver module</span>
+│<span class="w">   </span>├──<span class="w"> </span>imu.py<span class="w">               </span><span class="c1"># IMU processing</span>
+│<span class="w">   </span>├──<span class="w"> </span>encoder.py<span class="w">           </span><span class="c1"># Quadrature encoder interface</span>
+│<span class="w">   </span>├──<span class="w"> </span>task.py<span class="w">              </span><span class="c1"># Task scheduling</span>
+├──<span class="w"> </span>docs/
+│<span class="w">   </span>├──<span class="w"> </span>source/
+│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>index.rst
+│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>hardware.rst
+│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>wiring.rst
+│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>video_demo.rst
+│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>code_structure.rst<span class="w">  </span><span class="c1"># This page</span>
+├──<span class="w"> </span>README.md
+├──<span class="w"> </span>Makefile
+├──<span class="w"> </span>conf.py
+</pre></div>
+</div>
+</section>
+<section id="module-descriptions">
+<h2>Module Descriptions<a class="headerlink" href="#module-descriptions" title="Link to this heading"></a></h2>
+<p>Each module plays a critical role in system operation.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="hardware.html" class="btn btn-neutral float-left" title="Hardware Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="video_demo.html" class="btn btn-neutral float-right" title="Video Demo" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Will Hite and Ryan Maldonado.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
