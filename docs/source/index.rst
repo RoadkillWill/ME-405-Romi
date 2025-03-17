@@ -17,3 +17,6 @@ Welcome to ME405 Romi Project's documentation!
    video_demo
    IndicesAndTables
    modules
+
+
+* :ref:`genindex`
