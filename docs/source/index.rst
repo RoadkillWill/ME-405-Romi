@@ -18,7 +18,7 @@ compatability across all types of tracks, not hardcoded points on a single setup
 
    hardware
    CodeStructure
-   video_demo
+   results
    modules
 
 Indices and tables

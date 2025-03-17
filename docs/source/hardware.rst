@@ -169,13 +169,3 @@ Coordinate System
 -----------------
 
 Information about the coordinate system goes here.
-
-CAD
----
-
-Details about CAD models go here.
-
-Photos
-------
-
-Include relevant images or photo descriptions here.
