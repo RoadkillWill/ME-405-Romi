@@ -23,7 +23,7 @@ compatability across all types of tracks, not hardcoded points on a single setup
 
 Indices and tables
 ==================
+
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
-
