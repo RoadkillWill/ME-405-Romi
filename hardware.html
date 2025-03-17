@@ -46,12 +46,20 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Hardware Documentation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#wiring-pinouts">Wiring Pinouts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#base-chassis">Base Chassis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#motor-drivers">Motor Drivers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#processor">Processor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#line-sensors">Line Sensors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bump-sensors">Bump Sensors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#imu-inertial-measurement-unit">IMU (Inertial Measurement Unit)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#wiring-pinouts">Wiring/Pinouts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#additional-view">Additional View</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#pin-assignments">Pin Assignments</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ch-7-odd-even-pin-mapping">CH 7 ODD &amp; EVEN Pin Mapping</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ch-10-odd-even-pin-mapping">CH 10 ODD &amp; EVEN Pin Mapping</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#component-list">Component List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#coordinate-system">Coordinate System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cad">CAD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#photos">Photos</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="CodeStructure.html">Code Structure</a></li>
@@ -86,22 +94,81 @@
   <section id="hardware-documentation">
 <h1>Hardware Documentation<a class="headerlink" href="#hardware-documentation" title="Link to this heading"></a></h1>
 <p>This section details the wiring and pinout setup for the ROMI hardware.</p>
+<nav class="contents local" id="contents">
+<p class="topic-title"><strong>Contents</strong></p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#base-chassis" id="id1">Base Chassis</a></p></li>
+<li><p><a class="reference internal" href="#motor-drivers" id="id2">Motor Drivers</a></p></li>
+<li><p><a class="reference internal" href="#processor" id="id3">Processor</a></p></li>
+<li><p><a class="reference internal" href="#line-sensors" id="id4">Line Sensors</a></p></li>
+<li><p><a class="reference internal" href="#bump-sensors" id="id5">Bump Sensors</a></p></li>
+<li><p><a class="reference internal" href="#imu-inertial-measurement-unit" id="id6">IMU (Inertial Measurement Unit)</a></p></li>
+<li><p><a class="reference internal" href="#wiring-pinouts" id="id7">Wiring/Pinouts</a></p></li>
+<li><p><a class="reference internal" href="#additional-view" id="id8">Additional View</a></p></li>
+<li><p><a class="reference internal" href="#pin-assignments" id="id9">Pin Assignments</a></p></li>
+<li><p><a class="reference internal" href="#ch-7-odd-even-pin-mapping" id="id10">CH 7 ODD &amp; EVEN Pin Mapping</a></p></li>
+<li><p><a class="reference internal" href="#ch-10-odd-even-pin-mapping" id="id11">CH 10 ODD &amp; EVEN Pin Mapping</a></p></li>
+<li><p><a class="reference internal" href="#coordinate-system" id="id12">Coordinate System</a></p></li>
+<li><p><a class="reference internal" href="#cad" id="id13">CAD</a></p></li>
+<li><p><a class="reference internal" href="#photos" id="id14">Photos</a></p></li>
+</ul>
+</nav>
+<section id="base-chassis">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Base Chassis</a><a class="headerlink" href="#base-chassis" title="Link to this heading"></a></h2>
+<p>The <strong>base chassis</strong> serves as the structural foundation of the ROMI robot, providing support for all electronic and mechanical components. It is lightweight yet durable, allowing for fast movement and stable navigation on the game track. The chassis includes mounting points for sensors, the motor driver board, and the power distribution system. Its low center of gravity helps maintain balance when maneuvering sharp turns or responding to sudden control inputs.</p>
+<a class="reference internal image-reference" href="_images/Romi_chassis.png"><img alt="Romi Chassis" class="align-center" src="_images/Romi_chassis.png" style="width: 600px;" />
+</a>
+</section>
+<section id="motor-drivers">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Motor Drivers</a><a class="headerlink" href="#motor-drivers" title="Link to this heading"></a></h2>
+<p>Power Distribution Board and 6x AAA Batteries
+<strong>Motor Control</strong>: Uses Pulse Width Modulation (PWM) signals for precise speed adjustments</p>
+<a class="reference internal image-reference" href="_images/Motor_driver_PDB.png"><img alt="Motor Driver and Power Distribution Board" class="align-center" src="_images/Motor_driver_PDB.png" style="width: 600px;" />
+</a>
+</section>
+<section id="processor">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Processor</a><a class="headerlink" href="#processor" title="Link to this heading"></a></h2>
+<p>The <strong>STM32L476 Nucleo board</strong> acts as the brain of the ROMI robot, handling all computational tasks, sensor processing, and motor commands. It reads inputs from the line sensors, IMU, and bump sensors to make real-time navigation decisions. The processor executes control algorithms that allow the robot to autonomously navigate the game track and avoid collisions. Its multiple communication interfaces (UART, I2C, SPI) enable seamless data exchange between the various hardware components.</p>
+<a class="reference internal image-reference" href="_images/Nucleo.png"><img alt="Nucleo" class="align-center" src="_images/Nucleo.png" style="width: 600px;" />
+</a>
+</section>
+<section id="line-sensors">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Line Sensors</a><a class="headerlink" href="#line-sensors" title="Link to this heading"></a></h2>
+<p>The <strong>QTR-HD-13A Reflectance Sensor Array</strong> is used for detecting the track lines and making navigation decisions. These infrared sensors measure the reflectivity of the surface beneath them, helping the robot stay within the game track boundaries. By analyzing sensor readings, the processor can adjust motor speeds to correct the robot’s direction and maintain optimal alignment with the course. This is crucial for accurate path following and minimizing time lost due to navigation errors.</p>
+<a class="reference internal image-reference" href="_images/Line_sensor.png"><img alt="Line Sensors" class="align-center" src="_images/Line_sensor.png" style="width: 600px;" />
+</a>
+</section>
+<section id="bump-sensors">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Bump Sensors</a><a class="headerlink" href="#bump-sensors" title="Link to this heading"></a></h2>
+<p>The <strong>bump sensors</strong> are mechanical switches that detect physical contact with obstacles or barriers. They provide immediate feedback to the processor, triggering avoidance maneuvers or recalculations in the robot’s path. These sensors are essential for ensuring the robot can interact with dynamic elements on the game track, such as walls or other robots. When a bump sensor is activated, the robot can quickly reverse, turn, or find an alternative route to stay competitive.</p>
+<a class="reference internal image-reference" href="_images/Bump_sensor.png"><img alt="Bump Sensor Kit" class="align-center" src="_images/Bump_sensor.png" style="width: 600px;" />
+</a>
+</section>
+<section id="imu-inertial-measurement-unit">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">IMU (Inertial Measurement Unit)</a><a class="headerlink" href="#imu-inertial-measurement-unit" title="Link to this heading"></a></h2>
+<p>The <strong>BNO055 IMU</strong> provides orientation and motion sensing to keep the robot balanced and aware of its heading. It integrates an accelerometer, gyroscope, and magnetometer to track angular velocity, acceleration, and absolute position. This is critical for advanced movement strategies, such as making precise turns, stabilizing motion at high speeds, and recovering from external disturbances. The IMU ensures that the robot maintains a predictable trajectory and corrects for drift over time.
+- <strong>Features</strong>: 9-axis motion tracking
+- <strong>Usage</strong>: Position estimation, tilt correction, and motion stability</p>
+<a class="reference internal image-reference" href="_images/IMU.png"><img alt="IMU" class="align-center" src="_images/IMU.png" style="width: 600px;" />
+</a>
+</section>
 <section id="wiring-pinouts">
-<h2>Wiring Pinouts<a class="headerlink" href="#wiring-pinouts" title="Link to this heading"></a></h2>
-<p>The following diagram shows the correct wiring for the components:</p>
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Wiring/Pinouts</a><a class="headerlink" href="#wiring-pinouts" title="Link to this heading"></a></h2>
+<p>The <strong>wiring system</strong> connects all components, ensuring power distribution and data communication between the processor, sensors, and motors. Proper wiring is crucial for stable operation, as poor connections could lead to unreliable performance or data loss. The following diagram provides an overview of how all components are wired together, optimizing signal integrity and minimizing interference.</p>
 <a class="reference internal image-reference" href="_images/wiring_diagram.png"><img alt="Wiring Diagram" class="align-center" src="_images/wiring_diagram.png" style="width: 600px;" />
 </a>
 </section>
 <section id="additional-view">
-<h2>Additional View<a class="headerlink" href="#additional-view" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">Additional View</a><a class="headerlink" href="#additional-view" title="Link to this heading"></a></h2>
+<p>A top-down view of the ROMI robot, showing component placement and overall structure.</p>
 <a class="reference internal image-reference" href="_images/Top_of_ROMI.png"><img alt="Top View of ROMI" class="align-center" src="_images/Top_of_ROMI.png" style="width: 400px;" />
 </a>
 </section>
 <section id="pin-assignments">
-<h2>Pin Assignments<a class="headerlink" href="#pin-assignments" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id9" role="doc-backlink">Pin Assignments</a><a class="headerlink" href="#pin-assignments" title="Link to this heading"></a></h2>
 </section>
 <section id="ch-7-odd-even-pin-mapping">
-<h2>CH 7 ODD &amp; EVEN Pin Mapping<a class="headerlink" href="#ch-7-odd-even-pin-mapping" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id10" role="doc-backlink">CH 7 ODD &amp; EVEN Pin Mapping</a><a class="headerlink" href="#ch-7-odd-even-pin-mapping" title="Link to this heading"></a></h2>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>CH 7 ODD</p></th>
@@ -180,7 +247,7 @@
 </table>
 </section>
 <section id="ch-10-odd-even-pin-mapping">
-<h2>CH 10 ODD &amp; EVEN Pin Mapping<a class="headerlink" href="#ch-10-odd-even-pin-mapping" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id11" role="doc-backlink">CH 10 ODD &amp; EVEN Pin Mapping</a><a class="headerlink" href="#ch-10-odd-even-pin-mapping" title="Link to this heading"></a></h2>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>CH 10 ODD</p></th>
@@ -273,17 +340,17 @@
 </tbody>
 </table>
 </section>
-<section id="component-list">
-<h2>Component List<a class="headerlink" href="#component-list" title="Link to this heading"></a></h2>
-<ul class="simple">
-<li><p><strong>Motor Driver:</strong> Pololu Motor Driver</p></li>
-<li><p><strong>Microcontroller:</strong> STM32L476</p></li>
-<li><p><strong>Line Sensors:</strong> QTR-HD-13A Reflectance Sensor Array: 4mm Pitch, Analog Output</p></li>
-<li><p><strong>Bump Sensors:</strong> Left and Right Bumper Switch Assembly for Romi/TI-RSLK MAX</p></li>
-<li><p><strong>Encoders:</strong> Romi Encoders (12 CPR, 3.5-18V)</p></li>
-<li><p><strong>IMU:</strong> BNO055 IMU</p></li>
-<li><p><strong>Power Source:</strong> 6x AA Batteries and Power Distribution Board for Romi Chassis</p></li>
-</ul>
+<section id="coordinate-system">
+<h2><a class="toc-backref" href="#id12" role="doc-backlink">Coordinate System</a><a class="headerlink" href="#coordinate-system" title="Link to this heading"></a></h2>
+<p>Information about the coordinate system goes here.</p>
+</section>
+<section id="cad">
+<h2><a class="toc-backref" href="#id13" role="doc-backlink">CAD</a><a class="headerlink" href="#cad" title="Link to this heading"></a></h2>
+<p>Details about CAD models go here.</p>
+</section>
+<section id="photos">
+<h2><a class="toc-backref" href="#id14" role="doc-backlink">Photos</a><a class="headerlink" href="#photos" title="Link to this heading"></a></h2>
+<p>Include relevant images or photo descriptions here.</p>
 </section>
 </section>
 
