@@ -55,7 +55,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#calibrate-imu">Calibrate IMU</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#calibrate-sensor">Calibrate Sensor</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#closed-loop-control">Closed Loop Control</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#encoder">Encoder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#encoder-read">Encoder Read</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#position-control">Position Control</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#user-command">User Command</a></li>
 </ul>
@@ -95,35 +95,55 @@
 <section id="task-diagram">
 <h1>Task Diagram<a class="headerlink" href="#task-diagram" title="Link to this heading"></a></h1>
 <p>Our code is broken up into distinct tasks using a scheduler to help assign priorities and ensure cooperative handling. These tasks are explained in more detail below to show function and structure.</p>
+<a class="reference internal image-reference" href="_images/Romi_task_diagram.png"><img alt="Task Diagram" class="align-center" src="_images/Romi_task_diagram.png" style="width: 600px;" />
+</a>
 </section>
 <section id="state-diagrams-for-each-task">
 <h1>State Diagrams for Each Task<a class="headerlink" href="#state-diagrams-for-each-task" title="Link to this heading"></a></h1>
 <section id="left-pivot">
 <h2>Left Pivot<a class="headerlink" href="#left-pivot" title="Link to this heading"></a></h2>
+<a class="reference internal image-reference" href="_images/TD_left_pivot.png"><img alt="Left Pivot Task" class="align-center" src="_images/TD_left_pivot.png" style="width: 600px;" />
+</a>
 </section>
 <section id="right-pivot">
 <h2>Right Pivot<a class="headerlink" href="#right-pivot" title="Link to this heading"></a></h2>
+<a class="reference internal image-reference" href="_images/TD_right_pivot.png"><img alt="Right Pivot Task" class="align-center" src="_images/TD_right_pivot.png" style="width: 600px;" />
+</a>
 </section>
 <section id="bump-check">
 <h2>Bump Check<a class="headerlink" href="#bump-check" title="Link to this heading"></a></h2>
+<a class="reference internal image-reference" href="_images/TD_bump_check.png"><img alt="Bump Check Task" class="align-center" src="_images/TD_bump_check.png" style="width: 600px;" />
+</a>
 </section>
 <section id="calibrate-imu">
 <h2>Calibrate IMU<a class="headerlink" href="#calibrate-imu" title="Link to this heading"></a></h2>
+<a class="reference internal image-reference" href="_images/TD_calibrate_imu.png"><img alt="Calibrate IMU Task" class="align-center" src="_images/TD_calibrate_imu.png" style="width: 600px;" />
+</a>
 </section>
 <section id="calibrate-sensor">
 <h2>Calibrate Sensor<a class="headerlink" href="#calibrate-sensor" title="Link to this heading"></a></h2>
+<a class="reference internal image-reference" href="_images/TD_calibrate_sensor.png"><img alt="Calibrate Sensor Task" class="align-center" src="_images/TD_calibrate_sensor.png" style="width: 600px;" />
+</a>
 </section>
 <section id="closed-loop-control">
 <h2>Closed Loop Control<a class="headerlink" href="#closed-loop-control" title="Link to this heading"></a></h2>
+<a class="reference internal image-reference" href="_images/TD_cl_control.png"><img alt="Closed Loop Control Task" class="align-center" src="_images/TD_cl_control.png" style="width: 600px;" />
+</a>
 </section>
-<section id="encoder">
-<h2>Encoder<a class="headerlink" href="#encoder" title="Link to this heading"></a></h2>
+<section id="encoder-read">
+<h2>Encoder Read<a class="headerlink" href="#encoder-read" title="Link to this heading"></a></h2>
+<a class="reference internal image-reference" href="_images/TD_encoder.png"><img alt="Encoder Read Task" class="align-center" src="_images/TD_encoder.png" style="width: 600px;" />
+</a>
 </section>
 <section id="position-control">
 <h2>Position Control<a class="headerlink" href="#position-control" title="Link to this heading"></a></h2>
+<a class="reference internal image-reference" href="_images/TD_position_control.png"><img alt="Position Control Task" class="align-center" src="_images/TD_position_control.png" style="width: 600px;" />
+</a>
 </section>
 <section id="user-command">
 <h2>User Command<a class="headerlink" href="#user-command" title="Link to this heading"></a></h2>
+<a class="reference internal image-reference" href="_images/TD_user_commands.png"><img alt="User Command Task" class="align-center" src="_images/TD_user_commands.png" style="width: 600px;" />
+</a>
 </section>
 </section>
 
