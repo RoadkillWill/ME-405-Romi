@@ -89,7 +89,10 @@ CH 10 ODD & EVEN Pin Mapping
 
 Component List
 --------------
-- **Motor Driver:** Pololu Romi Motor Driver Board
-- **Microcontroller:** STM32F4
-- **Sensors:** Quadrature Encoders, IMU
-- **Power Source:** 4x AA Batteries
+- **Motor Driver:** Pololu Motor Driver
+- **Microcontroller:** STM32L476
+- **Line Sensors:** QTR-HD-13A Reflectance Sensor Array: 4mm Pitch, Analog Output
+- **Bump Sensors:** Left and Right Bumper Switch Assembly for Romi/TI-RSLK MAX
+- **Encoders:** Romi Encoders (12 CPR, 3.5-18V)
+- **IMU:** BNO055 IMU 
+- **Power Source:** 6x AA Batteries and Power Distribution Board for Romi Chassis
