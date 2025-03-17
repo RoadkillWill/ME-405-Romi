@@ -1,5 +1,5 @@
-Video Demo
-==========
+Results
+=======
 
 The following video shows our fastest successful attempt of driving the course. Our Romi completed the
 course in 39 seconds, but this does not account for the 5 second time deduction we achieved by pushing
