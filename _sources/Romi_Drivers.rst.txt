@@ -1,5 +1,5 @@
-Romi\_Drivers module
-====================
+Romi\_Drivers
+=============
 
 .. automodule:: Romi_Drivers
    :members:
