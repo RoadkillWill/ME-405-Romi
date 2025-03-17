@@ -90,16 +90,18 @@
              
   <section id="code-structure">
 <h1>Code Structure<a class="headerlink" href="#code-structure" title="Link to this heading"></a></h1>
-<p>This section describes the software architecture of the ME405 ROMI robot project. The code uses FSM (Finite State Machine) Logic to progress between distinct cases called “states.” More information on this structure can be found at: <a class="reference external" href="https://spluttflob.github.io/ME405-Support/index.html#ss_modules">https://spluttflob.github.io/ME405-Support/index.html#ss_modules</a></p>
+<p>This section describes the software architecture of the ME405 ROMI robot project. The code uses FSM (Finite State Machine) Logic to progress between distinct cases called “states.” The code follows a cooperative multitasking structure using the cotask library, organizing functionality into multiple tasks that yield control periodically. It utilizes shared variables (Share and Queue) for inter-task communication, managing motor control, sensor calibration, and navigation states. Hardware interfaces, including motor controllers, encoders, and sensors, are abstracted through Romi_Drivers. The FSM governs grid navigation and backup sequences, while a PID controller ensures closed-loop control for line following. The scheduler prioritizes tasks for efficient execution using pri_sched(), making the system well-structured for embedded robotics applications.</p>
+<p>More information on this structure can be found at: <a class="reference external" href="https://spluttflob.github.io/ME405-Support/index.html#ss_modules">https://spluttflob.github.io/ME405-Support/index.html#ss_modules</a></p>
 </section>
 <section id="task-diagram">
 <h1>Task Diagram<a class="headerlink" href="#task-diagram" title="Link to this heading"></a></h1>
-<p>Our code is broken up into distinct tasks using a scheduler to help assign priorities and ensure cooperative handling. These tasks are explained in more detail below to show function and structure.</p>
+<p>Here is an overview of our task structure. Although not all the shares that are in the code are listed here, this is due to them being used as variables only in one given task. They are more variables than shares.</p>
 <a class="reference internal image-reference" href="_images/Romi_task_diagram.png"><img alt="Task Diagram" class="align-center" src="_images/Romi_task_diagram.png" style="width: 600px;" />
 </a>
 </section>
 <section id="state-diagrams-for-each-task">
 <h1>State Diagrams for Each Task<a class="headerlink" href="#state-diagrams-for-each-task" title="Link to this heading"></a></h1>
+<p>To give some more detail about each task that is used in the code, here are our state transition diagrams that show in more detail what each task does.</p>
 <section id="left-pivot">
 <h2>Left Pivot<a class="headerlink" href="#left-pivot" title="Link to this heading"></a></h2>
 <a class="reference internal image-reference" href="_images/TD_left_pivot.png"><img alt="Left Pivot Task" class="align-center" src="_images/TD_left_pivot.png" style="width: 600px;" />
