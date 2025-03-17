@@ -12,6 +12,7 @@ Welcome to ME405 Romi Project's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   hardware
    modules
    wiring
    video_demo
