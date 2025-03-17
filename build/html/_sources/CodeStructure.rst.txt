@@ -5,8 +5,12 @@ This section describes the software architecture of the ME405 ROMI robot project
 
 More information on this structure can be found at: https://spluttflob.github.io/ME405-Support/index.html#ss_modules
 
+.. contents:: **Contents**
+   :depth: 2
+   :local:
+
 Task Diagram
-============
+------------
 
 Here is an overview of our task structure. Although not all the shares that are in the code are listed here, this is due to them being used as variables only in one given task. They are more variables than shares.
 
@@ -16,12 +20,11 @@ Here is an overview of our task structure. Although not all the shares that are 
    :alt: Task Diagram
 
 State Diagrams for Each Task
-============================
+----------------------------
 
 To give some more detail about each task that is used in the code, here are our state transition diagrams that show in more detail what each task does.
 
 Left Pivot
-----------
 
 .. image:: _static/TD_left_pivot.png
    :width: 600px
@@ -29,7 +32,6 @@ Left Pivot
    :alt: Left Pivot Task
 
 Right Pivot
------------
 
 .. image:: _static/TD_right_pivot.png
    :width: 600px
@@ -37,7 +39,6 @@ Right Pivot
    :alt: Right Pivot Task
 
 Bump Check
-----------
 
 .. image:: _static/TD_bump_check.png
    :width: 600px
@@ -45,7 +46,6 @@ Bump Check
    :alt: Bump Check Task
 
 Calibrate IMU
--------------
 
 .. image:: _static/TD_calibrate_imu.png
    :width: 600px
@@ -53,7 +53,6 @@ Calibrate IMU
    :alt: Calibrate IMU Task
 
 Calibrate Sensor
-----------------
 
 .. image:: _static/TD_calibrate_sensor.png
    :width: 600px
@@ -61,7 +60,6 @@ Calibrate Sensor
    :alt: Calibrate Sensor Task
 
 Closed Loop Control
--------------------
 
 .. image:: _static/TD_cl_control.png
    :width: 600px
@@ -69,7 +67,6 @@ Closed Loop Control
    :alt: Closed Loop Control Task
 
 Encoder Read
-------------
 
 .. image:: _static/TD_encoder.png
    :width: 600px
@@ -77,7 +74,6 @@ Encoder Read
    :alt: Encoder Read Task
 
 Position Control
-----------------
 
 .. image:: _static/TD_position_control.png
    :width: 600px
@@ -85,7 +81,6 @@ Position Control
    :alt: Position Control Task
 
 User Command
-------------
 
 .. image:: _static/TD_user_commands.png
    :width: 600px
