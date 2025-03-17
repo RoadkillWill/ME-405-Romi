@@ -174,7 +174,7 @@ Coordinate System
    :alt: Coordinate System
 
 Photo Gallery
-------
+-------------
 
 .. image:: _static/Back_of_ROMI.png
    :width: 600px

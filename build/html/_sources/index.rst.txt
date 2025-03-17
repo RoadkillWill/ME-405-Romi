@@ -14,7 +14,7 @@ compatability across all types of tracks, not hardcoded points on a single setup
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :caption: Code Documentation
 
    hardware
    CodeStructure

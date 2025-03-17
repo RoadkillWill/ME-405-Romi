@@ -42,7 +42,7 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Code Documentation</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="hardware.html">Hardware Documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CodeStructure.html">Code Structure</a></li>
@@ -57,7 +57,28 @@
 <li class="toctree-l2"><a class="reference internal" href="nb_input.html">nb_input</a></li>
 <li class="toctree-l2"><a class="reference internal" href="print_task2.html">print_task2</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Romi_Drivers.html">Romi_Drivers</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">task_share2</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">task_share2</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#task_share2.BaseShare"><code class="docutils literal notranslate"><span class="pre">BaseShare</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#task_share2.Queue"><code class="docutils literal notranslate"><span class="pre">Queue</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#task_share2.Queue.any"><code class="docutils literal notranslate"><span class="pre">Queue.any()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#task_share2.Queue.clear"><code class="docutils literal notranslate"><span class="pre">Queue.clear()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#task_share2.Queue.empty"><code class="docutils literal notranslate"><span class="pre">Queue.empty()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#task_share2.Queue.full"><code class="docutils literal notranslate"><span class="pre">Queue.full()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#task_share2.Queue.get"><code class="docutils literal notranslate"><span class="pre">Queue.get()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#task_share2.Queue.num_in"><code class="docutils literal notranslate"><span class="pre">Queue.num_in()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#task_share2.Queue.put"><code class="docutils literal notranslate"><span class="pre">Queue.put()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#task_share2.Queue.ser_num"><code class="docutils literal notranslate"><span class="pre">Queue.ser_num</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#task_share2.Share"><code class="docutils literal notranslate"><span class="pre">Share</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#task_share2.Share.get"><code class="docutils literal notranslate"><span class="pre">Share.get()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#task_share2.Share.put"><code class="docutils literal notranslate"><span class="pre">Share.put()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#task_share2.Share.ser_num"><code class="docutils literal notranslate"><span class="pre">Share.ser_num</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#task_share2.show_all"><code class="docutils literal notranslate"><span class="pre">show_all()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -87,8 +108,86 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="task-share2">
-<h1>task_share2<a class="headerlink" href="#task-share2" title="Link to this heading"></a></h1>
+  <section id="module-task_share2">
+<span id="task-share2"></span><h1>task_share2<a class="headerlink" href="#module-task_share2" title="Link to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="task_share2.BaseShare">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">task_share2.</span></span><span class="sig-name descname"><span class="pre">BaseShare</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type_code</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thread_protect</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/task_share2.html#BaseShare"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#task_share2.BaseShare" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="task_share2.Queue">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">task_share2.</span></span><span class="sig-name descname"><span class="pre">Queue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type_code</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thread_protect</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overwrite</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/task_share2.html#Queue"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#task_share2.Queue" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#task_share2.BaseShare" title="task_share2.BaseShare"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseShare</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="task_share2.Queue.any">
+<span class="sig-name descname"><span class="pre">any</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#task_share2.Queue.any" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="task_share2.Queue.clear">
+<span class="sig-name descname"><span class="pre">clear</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/task_share2.html#Queue.clear"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#task_share2.Queue.clear" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="task_share2.Queue.empty">
+<span class="sig-name descname"><span class="pre">empty</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#task_share2.Queue.empty" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="task_share2.Queue.full">
+<span class="sig-name descname"><span class="pre">full</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#task_share2.Queue.full" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="task_share2.Queue.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">in_ISR</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#task_share2.Queue.get" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="task_share2.Queue.num_in">
+<span class="sig-name descname"><span class="pre">num_in</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#task_share2.Queue.num_in" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="task_share2.Queue.put">
+<span class="sig-name descname"><span class="pre">put</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">in_ISR</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#task_share2.Queue.put" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="task_share2.Queue.ser_num">
+<span class="sig-name descname"><span class="pre">ser_num</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#task_share2.Queue.ser_num" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="task_share2.Share">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">task_share2.</span></span><span class="sig-name descname"><span class="pre">Share</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type_code</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thread_protect</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/task_share2.html#Share"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#task_share2.Share" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#task_share2.BaseShare" title="task_share2.BaseShare"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseShare</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="task_share2.Share.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">in_ISR</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#task_share2.Share.get" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="task_share2.Share.put">
+<span class="sig-name descname"><span class="pre">put</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">in_ISR</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#task_share2.Share.put" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="task_share2.Share.ser_num">
+<span class="sig-name descname"><span class="pre">ser_num</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#task_share2.Share.ser_num" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="task_share2.show_all">
+<span class="sig-prename descclassname"><span class="pre">task_share2.</span></span><span class="sig-name descname"><span class="pre">show_all</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/task_share2.html#show_all"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#task_share2.show_all" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
 </section>
 
 
