@@ -15,8 +15,11 @@ Welcome to ME405 Romi Project's documentation!
    hardware
    CodeStructure
    video_demo
-   IndicesAndTables
    modules
 
-
+Indices and tables
+==================
 * :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
+
