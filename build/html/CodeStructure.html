@@ -20,7 +20,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Video Demo" href="video_demo.html" />
+    <link rel="next" title="Results" href="results.html" />
     <link rel="prev" title="Hardware Documentation" href="hardware.html" /> 
 </head>
 
@@ -46,14 +46,21 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="hardware.html">Hardware Documentation</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Code Structure</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#main-components">Main Components</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#file-structure-overview">File Structure Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-descriptions">Module Descriptions</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Code Structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#task-diagram">Task Diagram</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#state-diagrams-for-each-task">State Diagrams for Each Task</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#left-pivot">Left Pivot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#right-pivot">Right Pivot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bump-check">Bump Check</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#calibrate-imu">Calibrate IMU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#calibrate-sensor">Calibrate Sensor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#closed-loop-control">Closed Loop Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#encoder">Encoder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#position-control">Position Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#user-command">User Command</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="video_demo.html">Video Demo</a></li>
-<li class="toctree-l1"><a class="reference internal" href="IndicesAndTables.html">Indices and Tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="results.html">Results</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modules.html">Modules</a></li>
 </ul>
 
@@ -83,49 +90,40 @@
              
   <section id="code-structure">
 <h1>Code Structure<a class="headerlink" href="#code-structure" title="Link to this heading"></a></h1>
-<p>This section describes the software architecture of the ME405 ROMI robot project.</p>
-<section id="main-components">
-<h2>Main Components<a class="headerlink" href="#main-components" title="Link to this heading"></a></h2>
-<p>The project is divided into several key modules, each handling a specific aspect of the system:</p>
-<ul class="simple">
-<li><p><strong>Main Execution (`main.py`)</strong>
-The entry point of the program, responsible for initializing all hardware components and managing task execution.</p></li>
-<li><p><strong>Motor Driver (`Romi_Drivers.py`)</strong>
-This module interfaces with the motor drivers, allowing speed control through Pulse Width Modulation (PWM).</p></li>
-<li><p><strong>IMU &amp; Sensor Processing (`imu.py`)</strong>
-Reads IMU sensor data and performs filtering to ensure accurate motion estimation.</p></li>
-<li><p><strong>Encoders (`encoder.py`)</strong>
-Handles quadrature encoder readings for precise motor positioning.</p></li>
-<li><p><strong>Task Scheduling (`task.py`)</strong>
-Implements a cooperative multitasking system to handle multiple real-time operations.</p></li>
-</ul>
+<p>This section describes the software architecture of the ME405 ROMI robot project. The code uses FSM (Finite State Machine) Logic to progress between distinct cases called “states.” More information on this structure can be found at: <a class="reference external" href="https://spluttflob.github.io/ME405-Support/index.html#ss_modules">https://spluttflob.github.io/ME405-Support/index.html#ss_modules</a></p>
 </section>
-<section id="file-structure-overview">
-<h2>File Structure Overview<a class="headerlink" href="#file-structure-overview" title="Link to this heading"></a></h2>
-<p>Below is the hierarchical structure of the project files:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ME-405-Romi/
-├──<span class="w"> </span>code/
-│<span class="w">   </span>├──<span class="w"> </span>main.py<span class="w">              </span><span class="c1"># Main entry script</span>
-│<span class="w">   </span>├──<span class="w"> </span>Romi_Drivers.py<span class="w">      </span><span class="c1"># Motor driver module</span>
-│<span class="w">   </span>├──<span class="w"> </span>imu.py<span class="w">               </span><span class="c1"># IMU processing</span>
-│<span class="w">   </span>├──<span class="w"> </span>encoder.py<span class="w">           </span><span class="c1"># Quadrature encoder interface</span>
-│<span class="w">   </span>├──<span class="w"> </span>task.py<span class="w">              </span><span class="c1"># Task scheduling</span>
-├──<span class="w"> </span>docs/
-│<span class="w">   </span>├──<span class="w"> </span>source/
-│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>index.rst
-│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>hardware.rst
-│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>wiring.rst
-│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>video_demo.rst
-│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>code_structure.rst<span class="w">  </span><span class="c1"># This page</span>
-├──<span class="w"> </span>README.md
-├──<span class="w"> </span>Makefile
-├──<span class="w"> </span>conf.py
-</pre></div>
-</div>
+<section id="task-diagram">
+<h1>Task Diagram<a class="headerlink" href="#task-diagram" title="Link to this heading"></a></h1>
+<p>Our code is broken up into distinct tasks using a scheduler to help assign priorities and ensure cooperative handling. These tasks are explained in more detail below to show function and structure.</p>
 </section>
-<section id="module-descriptions">
-<h2>Module Descriptions<a class="headerlink" href="#module-descriptions" title="Link to this heading"></a></h2>
-<p>Each module plays a critical role in system operation.</p>
+<section id="state-diagrams-for-each-task">
+<h1>State Diagrams for Each Task<a class="headerlink" href="#state-diagrams-for-each-task" title="Link to this heading"></a></h1>
+<section id="left-pivot">
+<h2>Left Pivot<a class="headerlink" href="#left-pivot" title="Link to this heading"></a></h2>
+</section>
+<section id="right-pivot">
+<h2>Right Pivot<a class="headerlink" href="#right-pivot" title="Link to this heading"></a></h2>
+</section>
+<section id="bump-check">
+<h2>Bump Check<a class="headerlink" href="#bump-check" title="Link to this heading"></a></h2>
+</section>
+<section id="calibrate-imu">
+<h2>Calibrate IMU<a class="headerlink" href="#calibrate-imu" title="Link to this heading"></a></h2>
+</section>
+<section id="calibrate-sensor">
+<h2>Calibrate Sensor<a class="headerlink" href="#calibrate-sensor" title="Link to this heading"></a></h2>
+</section>
+<section id="closed-loop-control">
+<h2>Closed Loop Control<a class="headerlink" href="#closed-loop-control" title="Link to this heading"></a></h2>
+</section>
+<section id="encoder">
+<h2>Encoder<a class="headerlink" href="#encoder" title="Link to this heading"></a></h2>
+</section>
+<section id="position-control">
+<h2>Position Control<a class="headerlink" href="#position-control" title="Link to this heading"></a></h2>
+</section>
+<section id="user-command">
+<h2>User Command<a class="headerlink" href="#user-command" title="Link to this heading"></a></h2>
 </section>
 </section>
 
@@ -134,7 +132,7 @@ Implements a cooperative multitasking system to handle multiple real-time operat
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="hardware.html" class="btn btn-neutral float-left" title="Hardware Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="video_demo.html" class="btn btn-neutral float-right" title="Video Demo" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="results.html" class="btn btn-neutral float-right" title="Results" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

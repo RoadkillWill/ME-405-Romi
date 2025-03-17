@@ -1,51 +1,41 @@
 Code Structure
 ==============
 
-This section describes the software architecture of the ME405 ROMI robot project.
+This section describes the software architecture of the ME405 ROMI robot project. The code uses FSM (Finite State Machine) Logic to progress between distinct cases called "states." More information on this structure can be found at: https://spluttflob.github.io/ME405-Support/index.html#ss_modules
 
-Main Components
----------------
-The project is divided into several key modules, each handling a specific aspect of the system:
+Task Diagram
+============
 
-- **Main Execution (`main.py`)**  
-  The entry point of the program, responsible for initializing all hardware components and managing task execution.
+Our code is broken up into distinct tasks using a scheduler to help assign priorities and ensure cooperative handling. These tasks are explained in more detail below to show function and structure.
 
-- **Motor Driver (`Romi_Drivers.py`)**  
-  This module interfaces with the motor drivers, allowing speed control through Pulse Width Modulation (PWM).
+State Diagrams for Each Task
+============================
 
-- **IMU & Sensor Processing (`imu.py`)**  
-  Reads IMU sensor data and performs filtering to ensure accurate motion estimation.
+Left Pivot
+----------
 
-- **Encoders (`encoder.py`)**  
-  Handles quadrature encoder readings for precise motor positioning.
+Right Pivot
+-----------
 
-- **Task Scheduling (`task.py`)**  
-  Implements a cooperative multitasking system to handle multiple real-time operations.
+Bump Check
+----------
 
-File Structure Overview
------------------------
-Below is the hierarchical structure of the project files:
+Calibrate IMU
+-------------
 
-.. code-block:: bash
+Calibrate Sensor
+----------------
 
-   ME-405-Romi/
-   ├── code/
-   │   ├── main.py              # Main entry script
-   │   ├── Romi_Drivers.py      # Motor driver module
-   │   ├── imu.py               # IMU processing
-   │   ├── encoder.py           # Quadrature encoder interface
-   │   ├── task.py              # Task scheduling
-   ├── docs/
-   │   ├── source/
-   │   │   ├── index.rst
-   │   │   ├── hardware.rst
-   │   │   ├── wiring.rst
-   │   │   ├── video_demo.rst
-   │   │   ├── code_structure.rst  # This page
-   ├── README.md
-   ├── Makefile
-   ├── conf.py
-
-Module Descriptions
+Closed Loop Control
 -------------------
-Each module plays a critical role in system operation.
+
+Encoder
+-------
+
+Position Control
+----------------
+
+User Command
+------------
+
+
