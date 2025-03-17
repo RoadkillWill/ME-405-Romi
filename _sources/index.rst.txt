@@ -13,3 +13,5 @@ Welcome to ME405 Romi Project's documentation!
    :caption: Contents:
 
    modules
+   wiring
+   video_demo
