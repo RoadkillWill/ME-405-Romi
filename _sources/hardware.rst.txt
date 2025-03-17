@@ -169,3 +169,8 @@ Coordinate System
 -----------------
 
 Information about the coordinate system goes here.
+
+Photos
+------
+
+Include relevant images or photo descriptions here.
