@@ -168,9 +168,35 @@ CH 10 ODD & EVEN Pin Mapping
 Coordinate System
 -----------------
 
-Information about the coordinate system goes here.
+.. image:: _static/coordinates.png
+   :width: 600px
+   :align: center
+   :alt: Coordinate System
 
-Photos
+Photo Gallery
 ------
 
-Include relevant images or photo descriptions here.
+.. image:: _static/Back_of_ROMI.png
+   :width: 600px
+   :align: center
+   :alt: ROMI Back
+
+.. image:: _static/Bottom_of_ROMI.png
+   :width: 600px
+   :align: center
+   :alt: ROMI Bottom
+
+.. image:: _static/Left_of_ROMI.png
+   :width: 600px
+   :align: center
+   :alt: ROMI Left
+
+.. image:: _static/Right_side_of_ROMI.png
+   :width: 600px
+   :align: center
+   :alt: ROMI Right
+
+.. image:: _static/Front_of_ROMI.png
+   :width: 600px
+   :align: center
+   :alt: ROMI Front
