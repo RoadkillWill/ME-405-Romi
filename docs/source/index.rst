@@ -14,5 +14,5 @@ Welcome to ME405 Romi Project's documentation!
 
    hardware
    modules
-   wiring
+   IndicesAndTables
    video_demo
