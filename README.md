@@ -11,11 +11,11 @@ The live HTML documentation for this project is hosted on **GitHub Pages** and c
 ## 👩‍💻 Contributing
 Contributions are welcome! To contribute:
 
-Fork the repository
-Create a new branch (git checkout -b feature-branch)
-Commit your changes (git commit -m "Added new feature")
-Push to the branch (git push origin feature-branch)
-Open a Pull Request
+- Fork the repository
+- Create a new branch (git checkout -b feature-branch)
+- Commit your changes (git commit -m "Added new feature")
+- Push to the branch (git push origin feature-branch)
+- Open a Pull Request
 
 
 Maintained by: Will Hite and Ryan Maldonado
