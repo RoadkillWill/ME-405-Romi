@@ -21,8 +21,6 @@ grid_escape_distance_in = 6
 deadzone1 = 1
 
 """ Define shared variables """
-desired_left_speed = Share('h', thread_protect=True, name="Desired Left Speed")
-desired_right_speed = Share('h', thread_protect=True, name="Desired Right Speed")
 left_motor_effort = Share('h', thread_protect=True, name="Left Motor Effort")
 right_motor_effort = Share('h', thread_protect=True, name="Right Motor Effort")
 left_position = Share('h', thread_protect=True, name="Left Position")
@@ -47,9 +45,7 @@ pre_turn_heading = Share('f', thread_protect=True, name="Pre-Turn Heading")
 first_movement = Share('b', thread_protect=True, name="First Movement")
 starting_heading = Share('f', thread_protect=True, name="Starting Heading")
 on_grid = Share('b', thread_protect=True, name="On Grid")
-bumper_on = Share('b', thread_protect=True, name="Bumper")
 heading_recorded = Share('b', thread_protect=True, name="Heading Recorded")
-heading_obtained = Share('b', thread_protect=True, name="Heading Obtained")
 turn_state = Share('h', thread_protect=True, name="Turn State")
 user_input = Queue('h', 10, thread_protect=True, name="User Input")
 actuator_input = Share('f', thread_protect=True, name="Actuator Input")
@@ -267,7 +263,6 @@ def task_closed_loop_control():
                     print("Main sees on grid!")
                     left_motor.set_effort(0)
                     right_motor.set_effort(0)
-                    heading_obtained.put(False)
                     grid_section.put(True)
                     print("turn State:", turn_state.get())
 
